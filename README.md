@@ -9,7 +9,7 @@ This README is deemed to take track on the objectives and of the TO-DO list for 
 * [ ] Companies Details.
 * [ ] Companies name and type filter.
 * [ ] Do a fork of this [repo](https://bitbucket.org/ioasys/empresas-web/src/master/) to the test development.
-* [ ] Send by email a link of the repo.
+* [ ] Send by email a link of the this [repo](https://bitbucket.org/pepeyen/empresas-web/src/master/).
 
 ### PROJECT INFO ###
 
