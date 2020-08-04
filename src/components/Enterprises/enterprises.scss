@@ -1,84 +1,127 @@
 $white: #ffff;
-$darkWhite: #f5f3f2;
 $lightGrey: #8d8c8c;
 $darkBlue: #1a0e49;
 $lightGreen: #7DC075;
 $red: #ff0f44;
 
-.search{
-    &__notification{
-        text-align: center;
-        font-family: "Roboto-Regular";
-    }
-    &__feedback{
-
-        &-start{
-            display: block;
-            margin: 10vh 0 0 0;
-            font-size: 2vh;
-            color: $darkBlue;
-        }
-        &-notfound{
-            display: block;
-            margin: 10vh 0 0 0;
-            font-size: 3vh;
-            color: $lightGrey;
-        }
-    }
+.enterprises{
+    padding: 0;
 }
 .enterprise{
-    padding: 0;
 
     &__button{
+        display: flex;
+        align-items: center;
+        background-color: $white;
+        text-align: left;
+        text-decoration: none;
         outline: none;
         border: none;
         border-bottom: .01vh solid transparent;
-        display: flex;
-        background-color: $white;
-        margin: 4vh 4vh 0 4vh;
-        min-height: 18vh;
-        min-width: 30vh;
-        padding: 2vh;
-        text-align: left;
-        align-items: center;
-        text-decoration: none;
+        margin: 2rem 2rem 0 2rem;
+        min-height: 9rem;
+        min-width: 15rem;
+        padding: 1rem;
 
-        &:hover{
-            cursor: pointer;
-            border-bottom: .01vh solid $red;
-        }
         &-logo{
             display: inline-block;
             background-color: $lightGreen;
             color: $white;
             font-family: "Roboto-Bold";
             text-align: center;
-            font-size: 6vh;
-            height: 13vh;
             width: 30%;
-            min-width: 10vh;
-            padding-top: 4vh;
+            font-size: 3rem;
+            height: 6rem;
+            min-width: 6rem;
+            padding-top: 2rem;
         }
         &-info{
-            margin-left: 3vh;
+            margin-left: 2rem;
         }
         &-name{
-            margin: .1vh;
             color: darkblue;
             font-family: "Roboto-Bold";
-            font-size: 2vh;
+            margin: .1rem;
+            font-size: 1.1rem;
         }
         &-type, &-country{
-            margin: .1vh;
             color: $lightGrey;
             font-family: "Roboto-Regular";
+            margin: .1rem;
             
         }
         &-type{
-            font-size: 1.8vh;
+            font-size: .9rem;
         }
         &-country{
-            font-size: 1.2vh;
+            font-size: .6rem;
+        }
+    }
+}
+.search{
+    text-align: center;
+    font-family: "Roboto-Regular";
+
+    &__start{
+        color: $darkBlue;
+        display: block;
+        margin: 10rem 0 0 0;
+        font-size: 1.6rem;
+    }
+    &__notfound{
+        display: block;
+        color: $lightGrey;
+        margin: 5rem 0 0 0;
+        font-size: 1.8rem;
+    }
+}
+@media (min-width: 801px) {
+    .enterprise{
+    
+        &__button{
+            border-bottom: .01vh solid transparent;
+            margin: 4vh 4vh 0 4vh;
+            min-height: 18vh;
+            min-width: 30vh;
+            padding: 2vh;
+    
+            &:hover{
+                border-bottom: .01vh solid $red;
+            }
+            &-logo{
+                font-size: 6vh;
+                height: 13vh;
+                min-width: 10vh;
+                padding-top: 4vh;
+            }
+            &-info{
+                margin-left: 3vh;
+            }
+            &-name{
+                margin: .1vh;
+                font-size: 2vh;
+            }
+            &-type, &-country{
+                margin: .1vh;
+                
+            }
+            &-type{
+                font-size: 1.8vh;
+            }
+            &-country{
+                font-size: 1.2vh;
+            }
+        }
+    }
+    .search{
+
+        &__start{
+            margin: 10vh 0 0 0;
+            font-size: 2vh;
+        }
+        &__notfound{
+            margin: 10vh 0 0 0;
+            font-size: 3vh;
         }
     }
 }

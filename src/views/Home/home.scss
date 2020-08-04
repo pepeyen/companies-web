@@ -1,19 +1,16 @@
 $white: #ffff;
-$grey: #EBE9D7;
 $darkGrey: #383743;
-$lighterBlue: #5dc6c7;
-$blue: #57bbbc;
 $red: #D84570;
 
 .navbar{
     width: 100%;
-    min-height: 8vh;
     background-color: $red;
-    padding-top: 3vh;
+    min-height: 4rem;
+    padding-top: 2rem;
     
     &__input{
-        margin: 0 2vh 0 2vh;
         display: flex;
+        margin: 0 .5rem 0 0;
         
         transition: width 5s ease-in-out;
         -moz-transition: width 5s ease-in-out; /* Firefox 4 */
@@ -22,46 +19,43 @@ $red: #D84570;
         -ms-transition: width 5s ease-in-out; /* Explorer 10 */
     }
     &__logo{
-        background-image: url('../../images/logo-nav.png');
+        background-image: url('../../images/navbar/logo-search.png');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 20vh;
-        width: 20vh;
-        height: 5vh;
         margin: 0 auto 0 auto;
+        background-size: 10rem;
+        width: 10rem;
+        height: 2.5rem;
     }
 }
 .filter{
     &__button{
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 5vh;
-        width: 5vh;
-        height: 5vh;
-        border: 0;
         outline: none;
         background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        border: 0;
     
-        &:hover{
-            cursor: pointer;
-        }
     }
-    &__pesquisa{
+    &__search{
         color: $white;
         font-family: "Roboto-Regular";
-        font-size: 2vh;
         letter-spacing: 2px;
         width: 92%;
         background-color: transparent !important;
         border: none;
+        font-size: 1rem;
 
         &:-webkit-autofill,
         &:-webkit-autofill:hover, 
         &:-webkit-autofill:focus, 
         &:-webkit-autofill:active  {
             color: $white !important;
-            box-shadow: 0 0 0 30px $red inset;
-            -webkit-box-shadow: 0 0 0 30px $red inset;
+            box-shadow: none;
+            -webkit-box-shadow: none;
         } 
         &:focus{
             outline: none;
@@ -71,20 +65,46 @@ $red: #D84570;
         }
     }
 }
-.--search{
-    background-image: url('../../images/ic-search-copy.svg');
-}
-.--close{
-    background-image: url('../../images/ic-close.svg');
-}
 .--input-mode{
-    border-bottom: .01vh solid $white;
     width: 96%;
     float: right;
-
-    transition: width 5s ease-in-out;
-    -moz-transition: width 5s ease-in-out; /* Firefox 4 */
-    -webkit-transition: width 5s ease-in-out; /* Safari and Chrome */
-    -o-transition: width 5s ease-in-out; /* Opera */
-    -ms-transition: width 5s ease-in-out; /* Explorer 10 */
+    border-bottom: .1rem solid $white;
+}
+@media (min-width: 801px) {
+    .navbar{
+        min-height: 8vh;
+        padding-top: 3vh;
+        
+        &__input{
+            margin: 0 2vh 0 2vh;
+        }
+        &__logo{
+            background-size: 20vh;
+            width: 20vh;
+            height: 5vh;
+        }
+    }
+    .filter{
+        &__button{
+            background-size: 5vh;
+            width: 5vh;
+            height: 5vh;
+        
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        &__search{
+            font-size: 2vh;
+        }
+    }
+    .--input-mode{
+        border-bottom: .01vh solid $white;
+    }
+}
+.--search{
+    background-image: url('../../images/navbar/ic-search.svg');
+}
+.--close{
+    background-image: url('../../images/navbar/ic-close.svg');
 }

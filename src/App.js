@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 //Views
-import Login from './views/Login'
+import SignIn from './views/SingIn'
 import Home from './views/Home'
-import SearchResult from './views/SearchResult'
+import Enterprise from './views/Enterprise'
 
 
 //Styles
@@ -15,10 +15,10 @@ function App() {
   return (
     <main>
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={SignIn} />
+        <Route exact path="/login" component={SignIn} />
         <Route exact path="/home" component={Home} />
-        <Route path="/empresa/:empresaId" component={SearchResult} />
+        <Route path="/empresa/:empresaId" component={Enterprise} />
       </Switch>
     </main>
   );

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 //Components
-import NavbarCarousel from '../../components/NavbarCarousel'
+import Carousel from '../../components/Carousel'
 import Enterprises from '../../components/Enterprises'
 
 //Services
-import { getEnterpriseWithFilters } from '../../services/getEnterpriseWithFilters'
+import { getEnterpriseWithFilters } from '../../services/GET/getEnterpriseWithFilters'
 
 //Styles
 import './home.scss'
@@ -51,6 +51,17 @@ class Home extends Component{
             this.setState({
                 isInputMode: true
             })
+            getEnterpriseWithFilters(this.pesquisa)
+            .then ((result) =>{ 
+                this.setState({
+                    responseData: result,
+                    isSearched: true
+                })
+            });
+    
+            if(this.state.nomeEmpresa !== ''){
+                sessionStorage.setItem('enterpriseName', this.state.nomeEmpresa)
+            }
         }else{
             if(e.target.value === "close"){
                 e.preventDefault();
@@ -59,17 +70,6 @@ class Home extends Component{
                 }) 
             }
         }
-        getEnterpriseWithFilters(this.pesquisa)
-        .then ((result) =>{ 
-            this.setState({
-                responseData: result,
-                isSearched: true
-            })
-        });
-
-        if(this.state.nomeEmpresa !== ''){
-            sessionStorage.setItem('enterpriseName', this.state.nomeEmpresa)
-        }else sessionStorage.removeItem('enterpriseName')
     }
     render() {
         if(!sessionStorage.getItem('isLoggedIn')){
@@ -83,13 +83,32 @@ class Home extends Component{
                 <div className="navbar">
                     <div className = { isInputMode ? "navbar__input --input-mode" : "navbar__input"}>
                         <div className = { isInputMode ? "--hidden" : "navbar__logo"}/>
-                        <button className="filter__button --search " value="search" onClick={this.handlerFilter} />
-                        <input type="text" name="nomeEmpresa" placeholder="Pesquisar" spellCheck="false" className= { isInputMode ? "filter__pesquisa" : "--hidden"} onKeyDown={this.handleUserKeyDown} onChange={this.handlerUserInput}/>
-                        <button className= { isInputMode ? "filter__button --close " : "--hidden"} value="close" onClick={this.handlerFilter}/>
+                        <button 
+                            className="filter__button --search " 
+                            value="search" 
+                            onClick={this.handlerFilter} 
+                        />
+                        <input 
+                            className={ isInputMode ? "filter__search" : "--hidden"} 
+                            name="nomeEmpresa" 
+                            type="text" 
+                            placeholder="Pesquisar" 
+                            spellCheck="false" 
+                            onKeyDown={this.handleUserKeyDown} 
+                            onChange={this.handlerUserInput}
+                        />
+                        <button 
+                            className={ isInputMode ? "filter__button --close " : "--hidden"} 
+                            value="close" 
+                            onClick={this.handlerFilter}
+                        />
                     </div>
                 </div>
-                <NavbarCarousel />
-                <Enterprises responseData={this.state.responseData} isSearched={this.state.isSearched}/>
+                <Carousel />
+                <Enterprises 
+                    responseData={this.state.responseData} 
+                    isSearched={this.state.isSearched}
+                />
             </div>
         );
     }

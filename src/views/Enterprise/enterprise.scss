@@ -1,0 +1,108 @@
+$white: #ffff;
+$red: #D84570;
+$lightGreen: #7DC075;
+$lightGrey: #8d8c8c;
+
+.result{
+
+    &__navbar{
+        display: flex;
+        align-items: center;
+        background-color: $red;
+        min-height: 4rem;
+        padding-top: 1.5rem;
+    }
+    &__backtrack{
+        display: inline-block;
+        outline: none;
+        background-image: url('../../images/navbar/ic-backtrack.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 3vh;
+        width: 2rem;
+        height: 2rem;
+        border: 0;
+        margin: 0 0 0 1rem;
+    }
+    &__enterprise-name{
+        margin: 0 0 0 2rem;
+        display: inline-block;
+        color: $white;
+        font-family: "Roboto-Regular";
+        font-size: 1.5rem;
+        letter-spacing: 1.2px;
+    }
+    &__description{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: $white;
+        margin: 1rem;
+        padding: 2rem; 
+
+        &-thumbnail{
+            display: flex;
+            align-items: center;
+            background-color: $lightGreen;
+            color: $white;
+            font-family: "Roboto-Bold";
+            text-align: center;
+            font-size: 3rem;
+            height: 12rem;
+            width: 100%;
+
+            & span{
+                display: block;
+                margin: 0 auto 0 auto;
+            }
+        }
+        &-text{
+            color: $lightGrey;
+            width: 100%;
+            font-family: "SourceSansPro-Regular";
+            text-align: left;
+            font-size: 1rem;
+            margin-top: 2.5rem;
+        }
+    }
+}
+@media (min-width: 801px) {
+    .result{
+
+        &__navbar{
+            min-height: 8vh;
+            padding-top: 3vh;
+        }
+        &__backtrack{
+            background-size: 3vh;
+            width: 3vh;
+            height: 5vh;
+            margin: 0 0 0 2vh;
+        
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        &__enterprise-name{
+            margin: 0 0 0 3vh;
+            font-size: 2.5vh;
+        }
+        &__description{
+            margin: 2vh;
+            padding: 5vh; 
+            min-width: 30vh;
+    
+            &-thumbnail{
+                font-size: 6vh;
+                height: 20vh;
+                width: 40%;
+                min-width: 30vh;
+            }
+            &-text{
+                font-size: 2vh;
+                margin-top: 5vh;
+                width: 40%;
+            }
+        }
+    }
+}

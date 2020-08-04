@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Link, Redirect} from 'react-router-dom';
 
 //Serivces
-import { getEnterpriseWithIndex } from '../../services/getEnterpriseWithIndex'
+import { getEnterpriseWithIndex } from '../../services/GET/getEnterpriseWithIndex'
 
 //Styles
-import './searchResult.scss'
+import './enterprise.scss'
 
-class SearchResult extends Component{
+class Enterprise extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -39,7 +39,10 @@ class SearchResult extends Component{
         return(
             <div className="result">
                 <div className="result__navbar">
-                    <Link className="result__backtrack" to="/home"/>
+                    <Link 
+                        className="result__backtrack" 
+                        to="/home"
+                    />
                     <div className="result__enterprise-name">{enterprise.enterprise_name}</div>
                 </div>
                 <div className="result__description">
@@ -54,4 +57,4 @@ class SearchResult extends Component{
         );
     }
 }
-export default SearchResult
+export default Enterprise

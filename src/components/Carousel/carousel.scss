@@ -1,0 +1,55 @@
+$white: #ffff;
+$darkGrey: #383743;
+$red: #D84570;
+
+.carousel{
+    display: flex;
+    overflow-x: auto;
+    margin: .5rem 0 0 0;
+    padding: .5rem;
+
+    &__button{
+        color: $darkGrey;
+        background-color: transparent;
+        border: .08rem solid $red;
+        border-radius: 5px;
+        font-family: "Roboto-Regular";
+        font-size: 1rem;
+        margin-right: .5rem;
+        min-width: 5.5rem;
+        min-height: 2.6rem;
+        padding: .03rem;
+
+        &:focus{
+            outline: none;
+        }
+    }
+}
+@media (min-width: 801px) {
+    .carousel{
+        margin: 1vh 0 0 0;
+        padding: 1vh;
+    
+        &__button{
+            border: .01vh solid $red;
+            font-size: 1.5vh;
+            margin-right: 1vh;
+            min-width: 9vh;
+            min-height: 4vh;
+            padding: .5vh;
+    
+            &:hover{
+                cursor: pointer;
+                font-family: "Roboto-Bold";
+                color: $white;
+                background-color: $red;
+                transition: font-family ease-in-out 100ms;
+            }
+        }
+    }
+}
+.--active{
+    font-family: "Roboto-Bold";
+    color: $white;
+    background-color: $red;
+}
