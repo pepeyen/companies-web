@@ -64,11 +64,11 @@ class Carousel extends Component{
     }
     render() {
         return(
-            <ul className = "carousel">
+            <ul className="carousel">
                 {this.state.enterpriseTypes.map((data, i) => {
                     return (
                         <button 
-                            className = {this.state[`button${i}`] ? 'carousel__button --active' : 'carousel__button'} 
+                            className={this.state[`button${i}`] ? 'carousel__button --active' : 'carousel__button'} 
                             name={`button${i}`}
                             type="button" 
                             value={i}                            

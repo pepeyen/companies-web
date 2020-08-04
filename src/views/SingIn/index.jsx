@@ -126,7 +126,7 @@ class SignIn extends Component{
                                 autoComplete="off" 
                                 onChange={this.handlerUserInput}
                             />
-                            <div className = {this.state.isLoginError ? 'sign-in__input-status' : 'sign-in__input-status --invisible' }>!</div>
+                            <div className={this.state.isLoginError ? 'sign-in__input-status' : 'sign-in__input-status --invisible' }>!</div>
                         </div>
                     </div>
                     <div className="sign-in__input-container">
@@ -166,7 +166,7 @@ class SignIn extends Component{
                 
                 {isLoading ? (
                     <div className="sign-in__loader">
-                        <div className = "sign-in__loader-spinner"/>
+                        <div className="sign-in__loader-spinner"/>
                     </div>  
                 ) : (
                     ''

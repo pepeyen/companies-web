@@ -79,10 +79,10 @@ class Home extends Component{
         }
         let { isInputMode } = this.state
         return(
-            <div className = "home">
+            <div className="home">
                 <div className="navbar">
-                    <div className = { isInputMode ? "navbar__input --input-mode" : "navbar__input"}>
-                        <div className = { isInputMode ? "--hidden" : "navbar__logo"}/>
+                    <div className={ isInputMode ? "navbar__input --input-mode" : "navbar__input"}>
+                        <div className={ isInputMode ? "--hidden" : "navbar__logo"}/>
                         <button 
                             className="filter__button --search " 
                             value="search" 

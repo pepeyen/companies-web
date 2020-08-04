@@ -29,7 +29,7 @@ class Enterprises extends Component{
                                     to={`/empresa/${data.id}`}
                                 >
                                     <div className="enterprise__button-logo">{data.id}</div>
-                                    <div className = "enterprise__button-info">
+                                    <div className="enterprise__button-info">
                                         <p className="enterprise__button-name">{data.enterprise_name}</p> 
                                         <p className="enterprise__button-type">{data.enterprise_type.enterprise_type_name}</p>
                                         <p className="enterprise__button-country">{data.city}</p> 
