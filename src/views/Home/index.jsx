@@ -20,7 +20,7 @@ class Home extends Component{
             isInputMode: false,
             isSearched: false
         }
-        this.handlerFilter = this.handlerFilter.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
     }
     nomeEmpresa = ''
     pesquisa ={
@@ -32,15 +32,21 @@ class Home extends Component{
         sessionStorage.removeItem('enterpriseTypeValue')
         sessionStorage.removeItem('selectedEnterpriseIndex');
     }
+    handleSingout = (e) => {
+        e.preventDefault();
+
+        sessionStorage.clear();
+        window.location.reload(false);
+    }
     handleUserKeyDown = (e) => {
         if (e.key === 'Enter') {
-            this.handlerFilter(e);
+            this.handleFilter(e);
         }
     }
-    handlerUserInput = (e) => {
+    handleUserInput = (e) => {
         this.nomeEmpresa = e.target.value
     }
-    handlerFilter = (e) => {   
+    handleFilter = (e) => {   
         this.pesquisa ={
             nomeEmpresa: this.nomeEmpresa,
             tipoEmpresa: sessionStorage.getItem("enterpriseTypeValue")
@@ -82,11 +88,15 @@ class Home extends Component{
             <div className="home">
                 <div className="navbar">
                     <div className={ isInputMode ? "navbar__input --input-mode" : "navbar__input"}>
+                        <button 
+                            className={ isInputMode ? "--hidden" : "navbar__sing-out"}
+                            onClick={this.handleSingout}
+                        />
                         <div className={ isInputMode ? "--hidden" : "navbar__logo"}/>
                         <button 
                             className="filter__button --search " 
                             value="search" 
-                            onClick={this.handlerFilter} 
+                            onClick={this.handleFilter} 
                         />
                         <input 
                             className={ isInputMode ? "filter__search" : "--hidden"} 
@@ -95,12 +105,12 @@ class Home extends Component{
                             placeholder="Pesquisar" 
                             spellCheck="false" 
                             onKeyDown={this.handleUserKeyDown} 
-                            onChange={this.handlerUserInput}
+                            onChange={this.handleUserInput}
                         />
                         <button 
                             className={ isInputMode ? "filter__button --close " : "--hidden"} 
                             value="close" 
-                            onClick={this.handlerFilter}
+                            onClick={this.handleFilter}
                         />
                     </div>
                 </div>

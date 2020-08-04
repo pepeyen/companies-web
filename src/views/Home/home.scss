@@ -18,6 +18,21 @@ $red: #D84570;
         -o-transition: width 5s ease-in-out; /* Opera */
         -ms-transition: width 5s ease-in-out; /* Explorer 10 */
     }
+    &__sing-out{
+        background-image: url('../../images/navbar/ic-signout.svg');
+        outline: none;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 1.5rem;
+        width: 3rem;
+        height: 2rem;
+        border: 0;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
     &__logo{
         background-image: url('../../images/navbar/logo-search.png');
         background-repeat: no-repeat;
@@ -77,6 +92,11 @@ $red: #D84570;
         
         &__input{
             margin: 0 2vh 0 2vh;
+        }
+        &__sing-out{
+            background-size: 3.5vh;
+            width: 4vh;
+            height: 5vh;
         }
         &__logo{
             background-size: 20vh;

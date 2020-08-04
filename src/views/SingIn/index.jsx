@@ -15,20 +15,20 @@ class SignIn extends Component{
             isUserLoggedIn: false,
             isLoginError: false
         }
-        this.handlerLogin = this.handlerLogin.bind(this);
-        this.handlerUserInput = this.handlerUserInput.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleUserInput = this.handleUserInput.bind(this);
     }
     componentDidMount() {
         if(!sessionStorage.getItem('isLoggedIn')){
             sessionStorage.clear()
         }
     }
-    handlerUserInput = (e) => {
+    handleUserInput = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
-    handlerPasswordState = (e) => {
+    handlePasswordState = (e) => {
         e.preventDefault();
         
         if(this.state.isPasswordHidden === true){
@@ -42,7 +42,7 @@ class SignIn extends Component{
 
         }
     }
-    handlerLogin = () => {
+    handleLogin = () => {
         this.setState({
             isLoading: true
         });
@@ -124,7 +124,7 @@ class SignIn extends Component{
                                 type="text" 
                                 placeholder="E-mail"  
                                 autoComplete="off" 
-                                onChange={this.handlerUserInput}
+                                onChange={this.handleUserInput}
                             />
                             <div className={this.state.isLoginError ? 'sign-in__input-status' : 'sign-in__input-status --invisible' }>!</div>
                         </div>
@@ -144,11 +144,11 @@ class SignIn extends Component{
                                 type={this.state.isPasswordHidden ? 'password' : 'text' }  
                                 placeholder="Password" 
                                 autoComplete="off" 
-                                onChange={this.handlerUserInput}
+                                onChange={this.handleUserInput}
                             />
                             <button 
                                 className={this.state.isLoginError ? '--hidden' : 'sign-in__input-reveal'} 
-                                onClick={this.handlerPasswordState}
+                                onClick={this.handlePasswordState}
                             />
                             <div className={this.state.isLoginError ? 'sign-in__input-status' : '--hidden' }>!</div>
                         </div>
@@ -160,7 +160,7 @@ class SignIn extends Component{
                         className="sign-in__button"                    
                         type="button" 
                         value="ENTRAR" 
-                        onClick={this.handlerLogin}
+                        onClick={this.handleLogin}
                     /> 
                 </form>
                 

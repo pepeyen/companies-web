@@ -7,7 +7,7 @@ import './enterprises.scss'
 class Enterprises extends Component{
     responseData = []
 
-    buttonHandler = (enterpriseIndex) =>{
+    buttonhandle = (enterpriseIndex) =>{
         let selectedEnterpriseIndex = enterpriseIndex;
 
         sessionStorage.setItem('selectedEnterpriseIndex', selectedEnterpriseIndex);
@@ -25,7 +25,7 @@ class Enterprises extends Component{
                                 <Link 
                                     className="enterprise__button" 
                                     key={i} 
-                                    onClick={() => this.buttonHandler(data.id)} 
+                                    onClick={() => this.buttonhandle(data.id)} 
                                     to={`/empresa/${data.id}`}
                                 >
                                     <div className="enterprise__button-logo">{data.id}</div>
