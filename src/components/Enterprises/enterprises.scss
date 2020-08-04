@@ -1,0 +1,84 @@
+$white: #ffff;
+$darkWhite: #f5f3f2;
+$lightGrey: #8d8c8c;
+$darkBlue: #1a0e49;
+$lightGreen: #7DC075;
+$red: #ff0f44;
+
+.search{
+    &__notification{
+        text-align: center;
+        font-family: "Roboto-Regular";
+    }
+    &__feedback{
+
+        &-start{
+            display: block;
+            margin: 10vh 0 0 0;
+            font-size: 2vh;
+            color: $darkBlue;
+        }
+        &-notfound{
+            display: block;
+            margin: 10vh 0 0 0;
+            font-size: 3vh;
+            color: $lightGrey;
+        }
+    }
+}
+.enterprise{
+    padding: 0;
+
+    &__button{
+        outline: none;
+        border: none;
+        border-bottom: .01vh solid transparent;
+        display: flex;
+        background-color: $white;
+        margin: 4vh 4vh 0 4vh;
+        min-height: 18vh;
+        min-width: 30vh;
+        padding: 2vh;
+        text-align: left;
+        align-items: center;
+        text-decoration: none;
+
+        &:hover{
+            cursor: pointer;
+            border-bottom: .01vh solid $red;
+        }
+        &-logo{
+            display: inline-block;
+            background-color: $lightGreen;
+            color: $white;
+            font-family: "Roboto-Bold";
+            text-align: center;
+            font-size: 6vh;
+            height: 13vh;
+            width: 30%;
+            min-width: 10vh;
+            padding-top: 4vh;
+        }
+        &-info{
+            margin-left: 3vh;
+        }
+        &-name{
+            margin: .1vh;
+            color: darkblue;
+            font-family: "Roboto-Bold";
+            font-size: 2vh;
+        }
+        &-type, &-country{
+            margin: .1vh;
+            color: $lightGrey;
+            font-family: "Roboto-Regular";
+            
+        }
+        &-type{
+            font-size: 1.8vh;
+        }
+        &-country{
+            font-size: 1.2vh;
+        }
+    }
+}
