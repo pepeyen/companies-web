@@ -43,9 +43,8 @@ class SignIn extends Component{
         }
     }
     handleLogin = () => {
-        this.setState({
-            isLoading: true
-        });
+        this.setState({ isLoading: true });
+        
         this.postLogin(this.state).then ((result) => {
             if(result.status === 200){
                 sessionStorage.setItem('access-token', result.headers.get('access-token'));

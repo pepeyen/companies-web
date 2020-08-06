@@ -7,7 +7,7 @@ import './enterprises.scss'
 class Enterprises extends Component{
     responseData = []
 
-    buttonhandle = (enterpriseIndex) =>{
+    entepriseToBeShown = (enterpriseIndex) =>{
         let selectedEnterpriseIndex = enterpriseIndex;
 
         sessionStorage.setItem('selectedEnterpriseIndex', selectedEnterpriseIndex);
@@ -16,7 +16,7 @@ class Enterprises extends Component{
     render() {
         if(this.props.isSearched === true){
             this.responseData = this.props.responseData.enterprises
-
+            
             if(this.responseData.length > 0){
                 return(
                     <ul className="enterprises">
@@ -25,7 +25,7 @@ class Enterprises extends Component{
                                 <Link 
                                     className="enterprise__button" 
                                     key={i} 
-                                    onClick={() => this.buttonhandle(data.id)} 
+                                    onClick={() => this.entepriseToBeShown(data.id)} 
                                     to={`/empresa/${data.id}`}
                                 >
                                     <div className="enterprise__button-logo">{data.id}</div>

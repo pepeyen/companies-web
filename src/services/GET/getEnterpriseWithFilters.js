@@ -1,4 +1,4 @@
-export function getEnterpriseWithFilters(pesquisa) {
+export function getEnterpriseWithFilters(searchedEnterprise) {
     return new Promise((resolve, reject) =>{   
         var myHeaders = new Headers();
         
@@ -13,9 +13,9 @@ export function getEnterpriseWithFilters(pesquisa) {
             redirect: 'follow'
         };
 
-        if(pesquisa.nomeEmpresa !== '' && pesquisa.tipoEmpresa === null)
+        if(searchedEnterprise.nomeEmpresa !== '' && searchedEnterprise.tipoEmpresa === null)
         {
-            fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?name=${pesquisa.nomeEmpresa}`, requestOptions)
+            fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?name=${searchedEnterprise.nomeEmpresa}`, requestOptions)
             .then((response) => {
                 resolve(response.json())
             })
@@ -25,9 +25,9 @@ export function getEnterpriseWithFilters(pesquisa) {
         }
         else
         {
-            if(pesquisa.nomeEmpresa === '' && pesquisa.tipoEmpresa !==null )
+            if(searchedEnterprise.nomeEmpresa === '' && searchedEnterprise.tipoEmpresa !==null )
             {
-                fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?enterprise_types=${pesquisa.tipoEmpresa}`, requestOptions)
+                fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?enterprise_types=${searchedEnterprise.tipoEmpresa}`, requestOptions)
                 .then((response) => {
                     resolve(response.json())
                 })
@@ -37,9 +37,9 @@ export function getEnterpriseWithFilters(pesquisa) {
             }
             else 
             {
-                if(pesquisa.nomeEmpresa !== '' && pesquisa.tipoEmpresa !==null)
+                if(searchedEnterprise.nomeEmpresa !== '' && searchedEnterprise.tipoEmpresa !==null)
                 {
-                    fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?enterprise_types=${pesquisa.tipoEmpresa}&name=${pesquisa.nomeEmpresa}`, requestOptions)
+                    fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?enterprise_types=${searchedEnterprise.tipoEmpresa}&name=${searchedEnterprise.nomeEmpresa}`, requestOptions)
                     .then((response) => {
                         resolve(response.json())
                     })

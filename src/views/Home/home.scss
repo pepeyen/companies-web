@@ -11,12 +11,6 @@ $red: #D84570;
     &__input{
         display: flex;
         margin: 0 .5rem 0 0;
-        
-        transition: width 5s ease-in-out;
-        -moz-transition: width 5s ease-in-out; /* Firefox 4 */
-        -webkit-transition: width 5s ease-in-out; /* Safari and Chrome */
-        -o-transition: width 5s ease-in-out; /* Opera */
-        -ms-transition: width 5s ease-in-out; /* Explorer 10 */
     }
     &__sing-out{
         background-image: url('../../images/navbar/ic-signout.svg');
@@ -59,7 +53,7 @@ $red: #D84570;
         color: $white;
         font-family: "Roboto-Regular";
         letter-spacing: 2px;
-        width: 92%;
+        width: 100%;
         background-color: transparent !important;
         border: none;
         font-size: 1rem;
@@ -81,7 +75,7 @@ $red: #D84570;
     }
 }
 .--input-mode{
-    width: 96%;
+    width: 98%;
     float: right;
     border-bottom: .1rem solid $white;
 }

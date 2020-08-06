@@ -12,7 +12,7 @@ $red: #D84570;
         color: $darkGrey;
         background-color: transparent;
         border: .08rem solid $red;
-        border-radius: 5px;
+        border-radius: .4rem;
         font-family: "Roboto-Regular";
         font-size: 1rem;
         margin-right: .5rem;
@@ -37,6 +37,7 @@ $red: #D84570;
             min-width: 9vh;
             min-height: 4vh;
             padding: .5vh;
+            border-radius: .5vh;
     
             &:hover{
                 cursor: pointer;

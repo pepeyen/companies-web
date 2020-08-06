@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 //Serivces
 import { getEnterpriseWithIndex } from '../../services/GET/getEnterpriseWithIndex'
@@ -22,7 +22,8 @@ class Enterprise extends Component{
     gerEnterpriseInfo = () => {
         let selectedEnterpriseIndex = sessionStorage.getItem('selectedEnterpriseIndex');
 
-        getEnterpriseWithIndex(selectedEnterpriseIndex).then ((result) => {
+        getEnterpriseWithIndex(selectedEnterpriseIndex)
+        .then((result) => {
             this.setState({
                 enterprise: result.enterprise
             })

@@ -20,15 +20,14 @@ class Home extends Component{
             isInputMode: false,
             isSearched: false
         }
-        this.handleFilter = this.handleFilter.bind(this);
+        this.searchEnterprise = this.searchEnterprise.bind(this);
     }
     nomeEmpresa = ''
-    pesquisa ={
+    searchedEnterprise ={
         nomeEmpresa: '',
         tipoEmpresa: null
     }
     componentDidMount() {
-        sessionStorage.removeItem('enterpriseName')
         sessionStorage.removeItem('enterpriseTypeValue')
         sessionStorage.removeItem('selectedEnterpriseIndex');
     }
@@ -39,43 +38,52 @@ class Home extends Component{
         window.location.reload(false);
     }
     handleUserKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            this.handleFilter(e);
+        this.nomeEmpresa = e.target.value
+
+        if (e.keyCode === 13) {
+            this.searchEnterprise(e);
         }
     }
-    handleUserInput = (e) => {
-        this.nomeEmpresa = e.target.value
-    }
-    handleFilter = (e) => {   
-        this.pesquisa ={
+    searchEnterprise = (e) => {
+        this.searchedEnterprise ={
             nomeEmpresa: this.nomeEmpresa,
             tipoEmpresa: sessionStorage.getItem("enterpriseTypeValue")
         }
-
-        if(e.target.value === "search"){
-            e.preventDefault();
-            this.setState({
-                isInputMode: true
-            })
-            getEnterpriseWithFilters(this.pesquisa)
-            .then ((result) =>{ 
+        
+        if(e.keyCode === 13){
+            this.getEnterprise(this.searchedEnterprise)
+        }
+        switch (e.target.value) {
+            case "showInput":
                 this.setState({
-                    responseData: result,
-                    isSearched: true
-                })
-            });
-    
-            if(this.state.nomeEmpresa !== ''){
-                sessionStorage.setItem('enterpriseName', this.state.nomeEmpresa)
-            }
-        }else{
-            if(e.target.value === "close"){
+                    isInputMode: true
+                });
+
+                break;
+            case "search":
+                e.preventDefault();
+                this.getEnterprise(this.searchedEnterprise)
+
+                break;
+            case "close":
                 e.preventDefault();
                 this.setState({
                     isInputMode: false
-                }) 
-            }
-        }
+                });
+                
+                break;
+            default:
+                break;
+        }        
+    }
+    getEnterprise = () => {
+        getEnterpriseWithFilters(this.searchedEnterprise)
+        .then ((result) =>{ 
+            this.setState({
+                responseData: result,
+                isSearched: true
+            })
+        });
     }
     render() {
         if(!sessionStorage.getItem('isLoggedIn')){
@@ -95,8 +103,8 @@ class Home extends Component{
                         <div className={ isInputMode ? "--hidden" : "navbar__logo"}/>
                         <button 
                             className="filter__button --search " 
-                            value="search" 
-                            onClick={this.handleFilter} 
+                            value={isInputMode ? "search" : "showInput"}
+                            onClick={this.searchEnterprise} 
                         />
                         <input 
                             className={ isInputMode ? "filter__search" : "--hidden"} 
@@ -105,12 +113,11 @@ class Home extends Component{
                             placeholder="Pesquisar" 
                             spellCheck="false" 
                             onKeyDown={this.handleUserKeyDown} 
-                            onChange={this.handleUserInput}
                         />
                         <button 
                             className={ isInputMode ? "filter__button --close " : "--hidden"} 
                             value="close" 
-                            onClick={this.handleFilter}
+                            onClick={this.searchEnterprise}
                         />
                     </div>
                 </div>

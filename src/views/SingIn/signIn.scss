@@ -128,7 +128,7 @@ $red: #ff0f44;
         font-family: "Roboto-Bold";
         font-size: .9rem;
         border: none;
-        border-radius: 2px;
+        border-radius: .3rem;
         width: 30%;
         min-width: 18rem;
         height: 3rem;
@@ -232,6 +232,7 @@ $red: #ff0f44;
             min-width: 35vh;
             height: 6vh;
             margin: 1vh 0 0 0;
+            border-radius: .3vh;
     
             &:hover{
                 background-color: $lightBlue;

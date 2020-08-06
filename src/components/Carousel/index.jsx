@@ -35,17 +35,17 @@ class Carousel extends Component{
         this.getEnterpriseTypes();
     }
     getEnterpriseTypes = () =>{
-        let pesquisa={
+        let searchedEnterprise={
             nomeEmpresa: '',
             tipoEmpresa: null
         }
 
         for (let i = 1; i < 25; i++) {
-            pesquisa ={
+            searchedEnterprise ={
                 nomeEmpresa: '',
                 tipoEmpresa: i
             }
-            getEnterpriseWithFilters(pesquisa)
+            getEnterpriseWithFilters(searchedEnterprise)
             .then ((result) =>{
                 this.sortEnterpriseTypes(result)
             });    
