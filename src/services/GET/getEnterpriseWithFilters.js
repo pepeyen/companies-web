@@ -6,6 +6,7 @@ export function getEnterpriseWithFilters(searchedEnterprise) {
         myHeaders.append("access-token", `${sessionStorage.getItem('access-token')}`);
         myHeaders.append("client", `${sessionStorage.getItem('client')}`);
         myHeaders.append("uid", `${sessionStorage.getItem('uid')}`);
+        myHeaders.append("Access-Control-Allow-Origin", "*");
             
         var requestOptions = {
             method: 'GET',

@@ -18,6 +18,7 @@ class Home extends Component{
             responseData: {},
             nomeEmpresa: '',
             isInputMode: false,
+            isSearching: false,
             isSearched: false
         }
         this.searchEnterprise = this.searchEnterprise.bind(this);
@@ -77,10 +78,14 @@ class Home extends Component{
         }        
     }
     getEnterprise = () => {
+        this.setState({
+            isSearching: true
+        })
         getEnterpriseWithFilters(this.searchedEnterprise)
         .then ((result) =>{ 
             this.setState({
                 responseData: result,
+                isSearching: false,
                 isSearched: true
             })
         });
@@ -124,6 +129,7 @@ class Home extends Component{
                 <Carousel />
                 <Enterprises 
                     responseData={this.state.responseData} 
+                    isSearching = {this.state.isSearching}
                     isSearched={this.state.isSearched}
                 />
             </div>

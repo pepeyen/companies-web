@@ -66,6 +66,7 @@ class SignIn extends Component{
         return new Promise((resolve, reject) =>{        
             let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Access-Control-Allow-Origin", "*");
             let raw = JSON.stringify({"email": `${userData.email}`,"password": `${userData.password}`});
               
             let requestOptions = {
@@ -81,7 +82,10 @@ class SignIn extends Component{
                 resolve(response)
             })
             .catch((error) => {
-                this.setState({ isLoading: false });
+                this.setState({ 
+                    isLoading: false,
+                    isLoginError: true
+                });
                 reject(error)
             });
         });
