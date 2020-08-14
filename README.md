@@ -1,3 +1,3 @@
-### Informações Importantes ###
-* Usuário de Teste: testeapple@ioasys.com.br
-* Senha de Teste : 12341234
+### Important Info ###
+* Login: testeapple@ioasys.com.br
+* Password : 12341234
