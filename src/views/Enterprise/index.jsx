@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 //Serivces
-import { getEnterpriseWithIndex } from '../../services/GET/getEnterpriseWithIndex'
+import { getEnterpriseWithIndex } from '../../services/getEnterpriseWithIndex'
 
 //Styles
 import './enterprise.scss'

@@ -13,7 +13,7 @@ $red: #D84570;
         margin: 0 .5rem 0 0;
     }
     &__sing-out{
-        background-image: url('../../images/navbar/ic-signout.svg');
+        background-image: url('../../assets/images/navbar/ic-signout.svg');
         outline: none;
         background-color: transparent;
         background-repeat: no-repeat;
@@ -28,7 +28,7 @@ $red: #D84570;
         }
     }
     &__logo{
-        background-image: url('../../images/navbar/logo-search.png');
+        background-image: url('../../assets/images/navbar/logo-search.png');
         background-repeat: no-repeat;
         background-position: center;
         margin: 0 auto 0 auto;
@@ -117,8 +117,8 @@ $red: #D84570;
     }
 }
 .--search{
-    background-image: url('../../images/navbar/ic-search.svg');
+    background-image: url('../../assets/images/navbar/ic-search.svg');
 }
 .--close{
-    background-image: url('../../images/navbar/ic-close.svg');
+    background-image: url('../../assets/images/navbar/ic-close.svg');
 }

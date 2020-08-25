@@ -6,7 +6,7 @@ import Carousel from '../../components/Carousel'
 import Enterprises from '../../components/Enterprises'
 
 //Services
-import { getEnterpriseWithFilters } from '../../services/GET/getEnterpriseWithFilters'
+import { getEnterpriseWithFilters } from '../../services/getEnterpriseWithFilters'
 
 //Styles
 import './home.scss'

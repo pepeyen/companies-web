@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 //Services
-import { getEnterpriseWithFilters } from '../../services/GET/getEnterpriseWithFilters'
+import { getEnterpriseWithFilters } from '../../services/getEnterpriseWithFilters'
 
 //Styles
 import './carousel.scss'

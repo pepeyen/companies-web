@@ -16,7 +16,7 @@ $red: #ff0f44;
     padding: 1rem;
 
     &__logo{
-        background-image: url('../../images/signInForm/logo-sign-in.png');
+        background-image: url('../../assets/images/signInForm/logo-sign-in.png');
         background-position: center;
         background-repeat: no-repeat;
         background-size: 15rem;
@@ -107,7 +107,7 @@ $red: #ff0f44;
             font-size: 1.2rem;
         }
         &-reveal{
-            background-image: url('../../images/signInForm/ic-eye-password.svg');
+            background-image: url('../../assets/images/signInForm/ic-eye-password.svg');
             background-position: center;
             background-repeat: no-repeat;
             background-color: transparent;
@@ -257,10 +257,10 @@ $red: #ff0f44;
     visibility: hidden;
 }
 .--email{
-    background-image: url('../../images/signInForm/ic-email.svg');
+    background-image: url('../../assets/images/signInForm/ic-email.svg');
 }
 .--password{
-    background-image: url('../../images/signInForm/ic-lock.svg');
+    background-image: url('../../assets/images/signInForm/ic-lock.svg');
 }
 .--blured{
     filter: blur(4px);
