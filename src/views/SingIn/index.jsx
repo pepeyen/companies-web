@@ -1,72 +1,74 @@
-import React, { Component } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 //Styles
 import './signIn.scss'
 
-class SignIn extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            isLoading: false, 
-            isPasswordHidden: true,
-            isUserLoggedIn: false,
-            isLoginError: false
-        }
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleUserInput = this.handleUserInput.bind(this);
-    }
-    componentDidMount() {
+function SignIn() {
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [isLoading,setIsLoading] = useState(false);
+    const [isPasswordHidden,setIsPasswordHidden] = useState(true);
+    const [isUserLoggedIn,setIsUserLoggedIn] = useState(false);
+    const [isLoginError,setIsLoginError] = useState(false);
+
+    useEffect(() => {
         if(!sessionStorage.getItem('isLoggedIn')){
             sessionStorage.clear();
         }
-    }
-    handleUserInput = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    }
-    handleUserLogin = (e) => {
-        if(e.keyCode === 13){
-            this.handleLogin();
+    },[]);
+
+    const handleUserInput = (e) => {
+        switch (e.target.name) {
+            case "email":
+                setEmail(e.target.value);
+
+                break;
+            case "password":
+                setPassword(e.target.value);
+                
+                break;
+            default:
+                break;
         }
     }
-    handlePasswordState = (e) => {
+    const handleUserLogin = (e) => {
+        if(e.keyCode === 13){
+            handleLogin();
+        }
+    }
+    const handlePasswordState = (e) => {
         e.preventDefault();
 
-        if(this.state.isPasswordHidden === true){
-            this.setState({
-                isPasswordHidden: false
-            });
+        if(isPasswordHidden === true){
+            setIsPasswordHidden(false);
         }else{
-            this.setState({
-                isPasswordHidden: true
-            });
+            setIsPasswordHidden(true);
         }
     }
-    handleLogin = () => {
-        this.setState({ isLoading: true });
+    const handleLogin = () => {
+        setIsLoading(true);
         
-        this.postLogin(this.state).then ((res) => {
+        let userData = {
+            email: email,
+            password: password
+        }
+
+        postLogin(userData)
+        .then((res) => {
             if(res.status === 200){
                 sessionStorage.setItem('access-token', res.headers.get('access-token'));
                 sessionStorage.setItem('client', res.headers.get('client'));
                 sessionStorage.setItem('uid', res.headers.get('uid'));
                 sessionStorage.setItem('isLoggedIn', true);
 
-                this.setState({
-                    isUserLoggedIn: true
-                })
+                setIsUserLoggedIn(true);
             }else{
-                this.setState({
-                    isLoginError: true
-                })
+                setIsLoginError(true);
             };
         });
     }
-    postLogin = (userData) => {
+    const postLogin = (userData) => {
         return new Promise((resolve, reject) =>{        
             let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -82,26 +84,22 @@ class SignIn extends Component{
         
             fetch("https://empresas.ioasys.com.br/api/v1/users/auth/sign_in", requestOptions)
             .then((response) => {
-                this.setState({ isLoading: false });
+                setIsLoading(false);
                 resolve(response)
             })
             .catch((error) => {
-                this.setState({ 
-                    isLoading: false,
-                    isLoginError: true
-                });
+                setIsLoading(false);
+                setIsLoginError(true);
                 reject(error)
             });
         });
     }
-    render() {
-        if(sessionStorage.getItem('isLoggedIn')){
-            return(
-                <Redirect to="/home"/>
-            );
-        }
-        let { isLoading } = this.state;
 
+    if(sessionStorage.getItem('isLoggedIn') || isUserLoggedIn === true){
+        return(
+            <Redirect to="/home"/>
+        );
+    }else{
         return(
             <div className="sign-in">
                 <form className={isLoading ? 'sign-in__form --blured' : 'sign-in__form' }>
@@ -119,7 +117,7 @@ class SignIn extends Component{
                     <div className="sign-in__input-container">
                         <div 
                             className="sign-in__input" 
-                            style={{ borderBottom: this.state.isLoginError ? '.01vh solid #ff0f44' : '' }}
+                            style={{borderBottom: isLoginError ? '.01vh solid #ff0f44' : '' }}
                         >
                             <label 
                                 className="sign-in__input-label --email"
@@ -131,16 +129,16 @@ class SignIn extends Component{
                                 type="text" 
                                 placeholder="E-mail"  
                                 autoComplete="off" 
-                                onChange={this.handleUserInput}
-                                onKeyDown={this.handleUserLogin}
+                                onChange={handleUserInput}
+                                onKeyDown={handleUserLogin}
                             />
-                            <div className={this.state.isLoginError ? 'sign-in__input-status' : 'sign-in__input-status --invisible' }>!</div>
+                            <div className={isLoginError ? 'sign-in__input-status' : 'sign-in__input-status --invisible' }>!</div>
                         </div>
                     </div>
                     <div className="sign-in__input-container">
                         <div 
                             className="sign-in__input" 
-                            style={{ borderBottom: this.state.isLoginError ? '.01vh solid #ff0f44' : '' }}
+                            style={{borderBottom: isLoginError ? '.01vh solid #ff0f44' : '' }}
                         >
                             <label 
                                 className="sign-in__input-label --password"
@@ -149,27 +147,27 @@ class SignIn extends Component{
                             <input 
                                 className="sign-in__input-password"  
                                 name="password"                            
-                                type={this.state.isPasswordHidden ? 'password' : 'text' }  
+                                type={isPasswordHidden ? 'password' : 'text' }  
                                 placeholder="Password" 
                                 autoComplete="off" 
-                                onChange={this.handleUserInput}
-                                onKeyDown={this.handleUserLogin}
+                                onChange={handleUserInput}
+                                onKeyDown={handleUserLogin}
                             />
                             <button 
-                                className={this.state.isLoginError ? '--hidden' : 'sign-in__input-reveal'} 
-                                onClick={this.handlePasswordState}
+                                className={isLoginError ? '--hidden' : 'sign-in__input-reveal'} 
+                                onClick={handlePasswordState}
                             />
-                            <div className={this.state.isLoginError ? 'sign-in__input-status' : '--hidden' }>!</div>
+                            <div className={isLoginError ? 'sign-in__input-status' : '--hidden' }>!</div>
                         </div>
                     </div>
-                    <div className={this.state.isLoginError ? 'sign-in__input-feedback' : 'sign-in__input-feedback --invisible' }>
+                    <div className={isLoginError ? 'sign-in__input-feedback' : 'sign-in__input-feedback --invisible' }>
                         <p>Credenciais informadas são inválidas, tente novamente.</p>
                     </div>
                     <input 
                         className="sign-in__button"                    
                         type="button" 
                         value="ENTRAR" 
-                        onClick={this.handleLogin}
+                        onClick={handleLogin}
                     /> 
                 </form>
                 

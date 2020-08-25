@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 //Serivces
@@ -7,36 +7,29 @@ import { getEnterpriseWithIndex } from '../../services/getEnterpriseWithIndex'
 //Styles
 import './enterprise.scss'
 
-class Enterprise extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            enterprise: {}
-        }
-    }
-    componentDidMount() {
+function Enterprise() {
+    const [enterprise,setEnterprise] = useState({});
+
+    useEffect(() => {
         if(sessionStorage.getItem('isLoggedIn')){
-            this.gerEnterpriseInfo()
+            getEnterpriseInfo()
         }
-    }
-    gerEnterpriseInfo = () => {
+    },[])
+
+    const getEnterpriseInfo = () => {
         let selectedEnterpriseIndex = sessionStorage.getItem('selectedEnterpriseIndex');
 
         getEnterpriseWithIndex(selectedEnterpriseIndex)
-        .then((result) => {
-            this.setState({
-                enterprise: result.enterprise
-            })
+        .then((res) => {
+            setEnterprise(res.enterprise);
         });
     }
 
-    render() {
-        if(!sessionStorage.getItem('isLoggedIn')){
-            return(
-                <Redirect to="/login"/>
-            );
-        }
-        let { enterprise } = this.state 
+    if(!sessionStorage.getItem('isLoggedIn')){
+        return(
+            <Redirect to="/login"/>
+        );
+    }else{
         return(
             <div className="result">
                 <div className="result__navbar">
@@ -55,7 +48,7 @@ class Enterprise extends Component{
                     </div>
                 </div>
             </div>
-        );
+        ); 
     }
 }
 export default Enterprise

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 //Components
@@ -11,126 +11,115 @@ import { getEnterpriseWithFilters } from '../../services/getEnterpriseWithFilter
 //Styles
 import './home.scss'
 
-class Home extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            responseData: {},
-            nomeEmpresa: '',
-            isInputMode: false,
-            isSearching: false,
-            isSearched: false
-        }
-        this.searchEnterprise = this.searchEnterprise.bind(this);
-    }
-    nomeEmpresa = ''
-    searchedEnterprise ={
+function Home() {
+    const [responseData,setResponseData] = useState({});
+    const [nomeEmpresa,setNomeEmpresa] = useState('');
+    const [isInputMode,setIsInputMode] = useState(false);
+    const [isSearching,setIsSearching] = useState(false);
+    const [isSearched,setIsSearched] = useState(false);
+
+    let searchedEnterprise = {
         nomeEmpresa: '',
         tipoEmpresa: null
     }
-    componentDidMount() {
-        sessionStorage.removeItem('enterpriseTypeValue')
+
+    useEffect(() => {
+        sessionStorage.removeItem('enterpriseTypeValue');
         sessionStorage.removeItem('selectedEnterpriseIndex');
-    }
-    handleSingout = (e) => {
+    },[]);
+
+    const handleSingout = (e) => {
         e.preventDefault();
 
         sessionStorage.clear();
         window.location.reload(false);
     }
-    handleUserKeyDown = (e) => {
-        this.nomeEmpresa = e.target.value
+    const handleUserKeyDown = (e) => {
+        setNomeEmpresa(e.target.value);
 
         if (e.keyCode === 13) {
-            this.searchEnterprise(e);
+            searchEnterprise(e);
         }
     }
-    searchEnterprise = (e) => {
-        this.searchedEnterprise ={
-            nomeEmpresa: this.nomeEmpresa,
+    const searchEnterprise = (e) => {
+        searchedEnterprise = {
+            nomeEmpresa: nomeEmpresa,
             tipoEmpresa: sessionStorage.getItem("enterpriseTypeValue")
         }
         
         if(e.keyCode === 13){
-            this.getEnterprise(this.searchedEnterprise)
+            getEnterprise(searchedEnterprise)
         }
+
         switch (e.target.value) {
             case "showInput":
-                this.setState({
-                    isInputMode: true
-                });
+                setIsInputMode(true);
 
                 break;
             case "search":
                 e.preventDefault();
-                this.getEnterprise(this.searchedEnterprise)
+                getEnterprise(searchedEnterprise);
 
                 break;
             case "close":
                 e.preventDefault();
-                this.setState({
-                    isInputMode: false
-                });
-                
+                setIsInputMode(false);
+
                 break;
             default:
                 break;
         }        
     }
-    getEnterprise = () => {
-        this.setState({
-            isSearching: true
-        })
-        getEnterpriseWithFilters(this.searchedEnterprise)
-        .then ((result) =>{ 
-            this.setState({
-                responseData: result,
-                isSearching: false,
-                isSearched: true
-            })
+    const getEnterprise = () => {
+        setIsSearching(true);
+        
+        getEnterpriseWithFilters(searchedEnterprise)
+        .then ((res) =>{ 
+            setResponseData(res);
+            setIsSearching(false);
+            setIsSearched(true);
         });
     }
-    render() {
-        if(!sessionStorage.getItem('isLoggedIn')){
-            return(
-                <Redirect to="/login"/>
-            );
-        }
-        let { isInputMode } = this.state
+
+    if(!sessionStorage.getItem('isLoggedIn')){
+        return(
+            <Redirect to="/login"/>
+        );
+    }else{
         return(
             <div className="home">
                 <div className="navbar">
-                    <div className={ isInputMode ? "navbar__input --input-mode" : "navbar__input"}>
+                    <div className={isInputMode ? "navbar__input --input-mode" : "navbar__input"}>
                         <button 
-                            className={ isInputMode ? "--hidden" : "navbar__sing-out"}
-                            onClick={this.handleSingout}
+                            className={isInputMode ? "--hidden" : "navbar__sing-out"}
+                            onClick={handleSingout}
                         />
                         <div className={ isInputMode ? "--hidden" : "navbar__logo"}/>
                         <button 
                             className="filter__button --search " 
                             value={isInputMode ? "search" : "showInput"}
-                            onClick={this.searchEnterprise} 
+                            onClick={searchEnterprise} 
                         />
                         <input 
-                            className={ isInputMode ? "filter__search" : "--hidden"} 
+                            className={isInputMode ? "filter__search" : "--hidden"} 
                             name="nomeEmpresa" 
                             type="text" 
                             placeholder="Pesquisar" 
                             spellCheck="false" 
-                            onKeyDown={this.handleUserKeyDown} 
+                            onKeyDown={handleUserKeyDown} 
                         />
                         <button 
-                            className={ isInputMode ? "filter__button --close " : "--hidden"} 
+                            className={isInputMode ? "filter__button --close " : "--hidden"} 
                             value="close" 
-                            onClick={this.searchEnterprise}
+                            onClick={searchEnterprise}
                         />
                     </div>
                 </div>
                 <Carousel />
                 <Enterprises 
-                    responseData={this.state.responseData} 
-                    isSearching = {this.state.isSearching}
-                    isSearched={this.state.isSearched}
+                    responseData={responseData} 
+                    isSearching = {isSearching}
+                    isSearched={isSearched}
                 />
             </div>
         );
