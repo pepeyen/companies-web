@@ -62,6 +62,11 @@ $red: #ff0f44;
         min-width: 20rem;
         padding-bottom: .3rem;
 
+        &:focus-within{
+            transition: border-color ease-in-out 200ms ;
+            border-color: $red;
+        }
+
         &-email , &-password{
             display: inline-block;
             background-color: transparent;
@@ -110,10 +115,6 @@ $red: #ff0f44;
             background-size: 1.5rem;
             width: 1.6rem;
             height: 1.6rem;
-
-            &:focus{
-                outline: none;
-            }
         }
         &-feedback{
             color: $red;
@@ -134,9 +135,6 @@ $red: #ff0f44;
         height: 3rem;
         margin: .6rem 0 0 0;
 
-        &:focus{
-            outline: none;
-        }
     }
 
     &__loader{

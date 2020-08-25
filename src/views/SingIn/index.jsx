@@ -20,7 +20,7 @@ class SignIn extends Component{
     }
     componentDidMount() {
         if(!sessionStorage.getItem('isLoggedIn')){
-            sessionStorage.clear()
+            sessionStorage.clear();
         }
     }
     handleUserInput = (e) => {
@@ -28,9 +28,14 @@ class SignIn extends Component{
             [e.target.name]: e.target.value
         });
     }
+    handleUserLogin = (e) => {
+        if(e.keyCode === 13){
+            this.handleLogin();
+        }
+    }
     handlePasswordState = (e) => {
         e.preventDefault();
-        
+
         if(this.state.isPasswordHidden === true){
             this.setState({
                 isPasswordHidden: false
@@ -39,17 +44,16 @@ class SignIn extends Component{
             this.setState({
                 isPasswordHidden: true
             });
-
         }
     }
     handleLogin = () => {
         this.setState({ isLoading: true });
         
-        this.postLogin(this.state).then ((result) => {
-            if(result.status === 200){
-                sessionStorage.setItem('access-token', result.headers.get('access-token'));
-                sessionStorage.setItem('client', result.headers.get('client'));
-                sessionStorage.setItem('uid', result.headers.get('uid'));
+        this.postLogin(this.state).then ((res) => {
+            if(res.status === 200){
+                sessionStorage.setItem('access-token', res.headers.get('access-token'));
+                sessionStorage.setItem('client', res.headers.get('client'));
+                sessionStorage.setItem('uid', res.headers.get('uid'));
                 sessionStorage.setItem('isLoggedIn', true);
 
                 this.setState({
@@ -128,6 +132,7 @@ class SignIn extends Component{
                                 placeholder="E-mail"  
                                 autoComplete="off" 
                                 onChange={this.handleUserInput}
+                                onKeyDown={this.handleUserLogin}
                             />
                             <div className={this.state.isLoginError ? 'sign-in__input-status' : 'sign-in__input-status --invisible' }>!</div>
                         </div>
@@ -148,6 +153,7 @@ class SignIn extends Component{
                                 placeholder="Password" 
                                 autoComplete="off" 
                                 onChange={this.handleUserInput}
+                                onKeyDown={this.handleUserLogin}
                             />
                             <button 
                                 className={this.state.isLoginError ? '--hidden' : 'sign-in__input-reveal'} 
