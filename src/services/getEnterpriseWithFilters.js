@@ -16,7 +16,7 @@ export function getEnterpriseWithFilters(searchedEnterprise) {
 
         if(searchedEnterprise.nomeEmpresa !== '' && searchedEnterprise.tipoEmpresa === null)
         {
-            fetch(`${process.env.REACT_APP_API_URL}/enterprises?name=${searchedEnterprise.nomeEmpresa}`, requestOptions)
+            fetch(`${process.env.REACT_APP_API_PROXY}${process.env.REACT_APP_API_URL}/enterprises?name=${searchedEnterprise.nomeEmpresa}`, requestOptions)
             .then((response) => {
                 resolve(response.json())
             })
