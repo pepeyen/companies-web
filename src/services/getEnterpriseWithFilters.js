@@ -16,7 +16,7 @@ export function getEnterpriseWithFilters(searchedEnterprise) {
 
         if(searchedEnterprise.nomeEmpresa !== '' && searchedEnterprise.tipoEmpresa === null)
         {
-            fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?name=${searchedEnterprise.nomeEmpresa}`, requestOptions)
+            fetch(`${process.env.REACT_APP_API_URL}/enterprises?name=${searchedEnterprise.nomeEmpresa}`, requestOptions)
             .then((response) => {
                 resolve(response.json())
             })
@@ -28,7 +28,7 @@ export function getEnterpriseWithFilters(searchedEnterprise) {
         {
             if(searchedEnterprise.nomeEmpresa === '' && searchedEnterprise.tipoEmpresa !==null )
             {
-                fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?enterprise_types=${searchedEnterprise.tipoEmpresa}`, requestOptions)
+                fetch(`${process.env.REACT_APP_API_URL}/enterprises?enterprise_types=${searchedEnterprise.tipoEmpresa}`, requestOptions)
                 .then((response) => {
                     resolve(response.json())
                 })
@@ -40,7 +40,7 @@ export function getEnterpriseWithFilters(searchedEnterprise) {
             {
                 if(searchedEnterprise.nomeEmpresa !== '' && searchedEnterprise.tipoEmpresa !==null)
                 {
-                    fetch(`https://empresas.ioasys.com.br/api/v1/enterprises?enterprise_types=${searchedEnterprise.tipoEmpresa}&name=${searchedEnterprise.nomeEmpresa}`, requestOptions)
+                    fetch(`${process.env.REACT_APP_API_URL}/enterprises?enterprise_types=${searchedEnterprise.tipoEmpresa}&name=${searchedEnterprise.nomeEmpresa}`, requestOptions)
                     .then((response) => {
                         resolve(response.json())
                     })

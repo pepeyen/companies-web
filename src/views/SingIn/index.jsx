@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 //Styles
-import './signIn.scss'
+import './signIn.scss';
 
 function SignIn() {
     const [email,setEmail] = useState('');
@@ -82,7 +82,7 @@ function SignIn() {
               redirect: 'follow'
             };
         
-            fetch("https://empresas.ioasys.com.br/api/v1/users/auth/sign_in", requestOptions)
+            fetch(`${process.env.REACT_APP_API_URL}/users/auth/sign_in`, requestOptions)
             .then((response) => {
                 setIsLoading(false);
                 resolve(response)
