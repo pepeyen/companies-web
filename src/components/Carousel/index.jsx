@@ -12,24 +12,18 @@ class Carousel extends Component{
     constructor(props){
         super(props);
         this.state = {
-            enterpriseTypes: []
+            enterpriseTypes: [],
+            selectedType: ''
         }
     
     }
     setButtonState = (e) => {
         e.preventDefault();
         
-        if(this.state[e.target.name] === false){
-            this.setState({
-                [e.target.name] : true
-            })
-            sessionStorage.setItem("enterpriseTypeValue", e.target.value);
-        }else{
-            this.setState({
-                [e.target.name] : false
-            })
-            sessionStorage.removeItem("enterpriseTypeValue");
-        }
+        this.setState({
+            selectedType : e.target.name
+        })
+        sessionStorage.setItem("enterpriseTypeValue", e.target.value);
     }
     componentDidMount() {
         this.getEnterpriseTypes();
@@ -68,7 +62,7 @@ class Carousel extends Component{
                 {this.state.enterpriseTypes.map((data, i) => {
                     return (
                         <button 
-                            className={this.state[`button${i}`] ? 'carousel__button --active' : 'carousel__button'} 
+                            className={this.state.selectedType === `button${i}` ? 'carousel__button --active' : 'carousel__button'} 
                             name={`button${i}`}
                             type="button" 
                             value={i}                            
