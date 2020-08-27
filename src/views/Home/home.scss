@@ -22,10 +22,6 @@ $red: #D84570;
         width: 3rem;
         height: 2rem;
         border: 0;
-
-        &:hover{
-            cursor: pointer;
-        }
     }
     &__logo{
         background-image: url('../../assets/images/navbar/logo-search.png');
@@ -91,6 +87,11 @@ $red: #D84570;
             background-size: 3.5vh;
             width: 4vh;
             height: 5vh;
+
+            &:hover{
+                opacity: 0.8;
+                cursor: pointer;
+            }
         }
         &__logo{
             background-size: 20vh;
@@ -105,6 +106,7 @@ $red: #D84570;
             height: 5vh;
         
             &:hover{
+                opacity: 0.8;
                 cursor: pointer;
             }
         }
