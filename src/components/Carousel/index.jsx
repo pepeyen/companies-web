@@ -34,7 +34,7 @@ class Carousel extends Component{
             tipoEmpresa: null
         }
 
-        for (let i = 1; i < 25; i++) {
+        for (let i = 1; i < 30; i++) {
             searchedEnterprise ={
                 nomeEmpresa: '',
                 tipoEmpresa: i
@@ -42,19 +42,21 @@ class Carousel extends Component{
             getEnterpriseWithFilters(searchedEnterprise)
             .then ((result) =>{
                 this.sortEnterpriseTypes(result)
-            });    
+            });   
         }
     }
     sortEnterpriseTypes = (result) => { 
-        let currentEnterpriseTypeId = result.enterprises[0].enterprise_type.id;
-        let currentEnterpriseTypeName = result.enterprises[0].enterprise_type.enterprise_type_name;
-
-        this.enterpriseTypeData[currentEnterpriseTypeId] = currentEnterpriseTypeName;
-
-        this.setState({
-            enterpriseTypes: this.enterpriseTypeData,
-            [`button${currentEnterpriseTypeId}`]: false
-        })
+        if(result.enterprises.length !== 0){
+            let currentEnterpriseTypeId = result.enterprises[0].enterprise_type.id;
+            let currentEnterpriseTypeName = result.enterprises[0].enterprise_type.enterprise_type_name;
+    
+            this.enterpriseTypeData[currentEnterpriseTypeId] = currentEnterpriseTypeName;
+    
+            this.setState({
+                enterpriseTypes: this.enterpriseTypeData,
+                [`button${currentEnterpriseTypeId}`]: false
+            })
+        }
     }
     render() {
         return(
