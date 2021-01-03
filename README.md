@@ -1,4 +1,4 @@
-[![companies-web](https://repository-images.githubusercontent.com/284112368/15c3f080-3958-11eb-8cd4-d10352f86254)](https://pepeyen.github.io/companies-web)
+[![companies-web](https://raw.githubusercontent.com/pepeyen/companies-web/master/.github/images/project-thumbnail.png)](https://pepeyen.github.io/companies-web)
 
 # companies
 
