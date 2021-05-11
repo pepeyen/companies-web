@@ -30,15 +30,7 @@ Now you are ready to use the project, just issue a `npm start` and you're good t
 
 Firstly this project was coding interview, but as a finished what was asked i saw a really good oportunity to train my full-stack skills.
 
-1. If you wish to know more about this coding interview:
-
-    [Desired design](https://app.zeplin.io/)
-    
-    - **Login: teste_web**
-
-    - **Password: teste_ioasys**
-
-2. To be able toaccess their API use these auth information:
+1. To be able to access their API use these auth information:
 
 - **Login: testeapple@ioasys.com.br**
 - **Password: 12341234**
