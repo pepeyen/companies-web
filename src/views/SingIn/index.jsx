@@ -82,7 +82,7 @@ function SignIn() {
               redirect: 'follow'
             };
         
-            fetch(`${process.env.REACT_APP_API_PROXY}${process.env.REACT_APP_API_URL}/users/auth/sign_in`, requestOptions)
+            fetch(`${process.env.REACT_APP_API_PROXY}/${process.env.REACT_APP_API_URL}/users/auth/sign_in`, requestOptions)
             .then((response) => {
                 setIsLoading(false);
                 resolve(response)

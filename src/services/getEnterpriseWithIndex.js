@@ -14,7 +14,7 @@ export function getEnterpriseWithIndex(enterpriseIndex) {
             redirect: 'follow'
         };
         
-        fetch(`${process.env.REACT_APP_API_PROXY}${process.env.REACT_APP_API_PROXY}${process.env.REACT_APP_API_URL}/enterprises/${enterpriseIndex}`, requestOptions)
+        fetch(`${process.env.REACT_APP_API_PROXY}/${process.env.REACT_APP_API_URL}/enterprises/${enterpriseIndex}`, requestOptions)
         .then((response) => {
             resolve(response.json())
         })
